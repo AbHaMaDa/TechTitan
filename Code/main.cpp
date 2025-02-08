@@ -33,6 +33,7 @@ PID mypid(&input, &output, &setPoint, Kp, Ki, Kd, DIRECT);// Create a PID object
 
 // function prototypes that are used in the code
 void LineFollowingMode();
+void  ObstacleMode();
 void PickPLaceMode();
 void movingForward();
 void movingBackward();
@@ -48,10 +49,6 @@ void speedDown();
 
 // the setup function runs once when you press reset or power the board
 void setup() {
-
-
-
-
 
   // set the pins to be output or input
   pinMode(MOTOR_L_IN1, OUTPUT);
@@ -102,16 +99,13 @@ void loop() {
 
   switch (mode){
     case 'L':LineFollowingMode();break;
-    case 'O':;break;
+    case 'O':ObstacleMode();break;
     case 'P':PickPLaceMode();break;
   }
 
-
-  
-
-
-
 }
+
+
 // function definitions
 void LineFollowingMode(){ //1st mode
 
@@ -180,6 +174,10 @@ analogWrite(speedControlerR, rightSpeed);
 }
 
 
+void  ObstacleMode(){
+  
+}
+
 
 
 void PickPLaceMode(){ //3th mode
@@ -203,6 +201,10 @@ void PickPLaceMode(){ //3th mode
   }
   order = ' ';
 }
+
+
+
+
 
 void movingForward(){
   digitalWrite(MOTOR_L_IN1, HIGH);
@@ -238,6 +240,7 @@ void turningRight(){
 }
 
 void turningLeft(){
+
   digitalWrite(MOTOR_L_IN1, LOW);
   digitalWrite(MOTOR_L_IN2, HIGH);
   digitalWrite(MOTOR_R_IN3, HIGH);
@@ -247,7 +250,9 @@ void turningLeft(){
   Serial.println("Turning Left");
 
 }
+
 void stopMoving(){
+
   digitalWrite(MOTOR_L_IN1, LOW);
   digitalWrite(MOTOR_L_IN2, LOW);
   digitalWrite(MOTOR_R_IN3, LOW);
@@ -256,6 +261,7 @@ void stopMoving(){
   analogWrite(speedControlerL, 0);
   Serial.println("Stop Moving");
 }
+
 void movingForwardLeft(){
   digitalWrite(MOTOR_L_IN1, HIGH);
   digitalWrite(MOTOR_L_IN2, LOW);
@@ -265,6 +271,7 @@ void movingForwardLeft(){
   analogWrite(speedControlerL, speedValue-40);
   Serial.println("Moving Forward Left");
 }
+
 void movingForwardRight(){
   digitalWrite(MOTOR_L_IN1, HIGH);
   digitalWrite(MOTOR_L_IN2, LOW);
@@ -274,6 +281,7 @@ void movingForwardRight(){
   analogWrite(speedControlerL, speedValue);
   Serial.println("Moving Forward Right");
 }
+
 void movingBackwardLeft(){
   digitalWrite(MOTOR_L_IN1, LOW);
   digitalWrite(MOTOR_L_IN2, HIGH);
@@ -284,6 +292,7 @@ void movingBackwardLeft(){
   Serial.println("Moving Backward Left");
 }
 
+
 void movingBackwardRight(){
   digitalWrite(MOTOR_L_IN1, LOW);
   digitalWrite(MOTOR_L_IN2, HIGH);
@@ -293,6 +302,7 @@ void movingBackwardRight(){
   analogWrite(speedControlerL, speedValue);
   Serial.println("Moving Backward Right");
 }
+
 void speedUp(){
 
   speedValue += 50;
@@ -303,6 +313,7 @@ void speedUp(){
     Serial.println(speedValue);
   
 }
+
 
 void speedDown(){
   speedValue -= 50;
